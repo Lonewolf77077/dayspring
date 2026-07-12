@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DaySpring Hotel — Wuse, Abuja | Your Home Away From Home</title>
+<meta name="description" content="DaySpring Hotel in Wuse, Abuja. Comfortable rooms, warm hospitality, and easy access to the city's major attractions.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --navy: #1A2A3A;
+    --navy-deep: #101a25;
+    --brown: #5C3A21;
+    --gold: #C9A84C;
+    --gold-soft: #E4CD8C;
+    --cream: #F8F3E9;
+    --paper: #FFFDF9;
+    --ink: #2A2622;
+    --ink-soft: #6b6459;
+    --line: rgba(26,42,58,0.12);
+    --shadow: 0 20px 50px rgba(16,26,37,0.18);
+    --radius: 2px;
+  }
+
+  *,*::before,*::after{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    color: var(--navy);
+    margin: 0;
+    letter-spacing: 0.2px;
+  }
+  p{ margin: 0; }
+  a{ color: inherit; text-decoration: none; }
+  img{ max-width: 100%; display:block; }
+  ul{ margin:0; padding:0; list-style:none; }
+  button{ font-family: inherit; cursor: pointer; }
+  :focus-visible{ outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  .container{ max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+  .eyebrow{
+    display:flex; align-items:center; gap: 14px;
+    font-family:'Inter',sans-serif; font-weight:600; font-size: 12.5px;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 18px;
+  }
+  .eyebrow::before{
+    content:""; width: 34px; height: 1px; background: var(--gold);
+  }
+  .section{ padding: 108px 0; }
+  .section-head{ max-width: 640px; margin-bottom: 56px; }
+  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+  .section-head.center .eyebrow{ justify-content:center; }
+  .section-head.center .eyebrow::before{ display:none; }
+  .section-head h2{ font-size: clamp(30px, 4vw, 42px); line-height: 1.15; }
+  .section-head p{ margin-top: 18px; color: var(--ink-soft); font-size: 17px; }
+
+  /* Arch motif — signature shape used throughout, echoing the gateway arches
+     found across Abuja's civic architecture. */
+  .arch-frame{
+    border-radius: 140px 140px 6px 6px;
+    overflow: hidden;
+  }
+  .arch-divider{
+    width: 100%; height: 46px; display:block;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position: fixed; top:0; left:0; right:0; z-index: 500;
+    background: rgba(16,26,37,0.0);
+    transition: background .35s ease, box-shadow .35s ease, padding .35s ease;
+    padding: 22px 0;
+  }
+  header.scrolled{
+    background: rgba(16,26,37,0.96);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+    padding: 14px 0;
+  }
+  .nav-row{ display:flex; align-items:center; justify-content:space-between; gap: 20px; }
+  .brand{ display:flex; align-items:center; gap:12px; color:#fff; }
+  .brand-mark{ width: 38px; height: 38px; flex-shrink:0; }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.1; }
+  .brand-text strong{ font-family:'Playfair Display',serif; font-size: 19px; letter-spacing:0.5px; }
+  .brand-text span{ font-size: 10px; letter-spacing: 3px; text-transform:uppercase; color: var(--gold-soft); margin-top:3px;}
+
+  nav.main-nav{ display:flex; gap: 34px; }
+  nav.main-nav a{
+    color: #EDE7DA; font-size: 14.5px; font-weight:500; position:relative; padding: 4px 0;
+  }
+  nav.main-nav a::after{
+    content:""; position:absolute; left:0; right:0; bottom:-4px; height:1px; background: var(--gold);
+    transform: scaleX(0); transform-origin:left; transition: transform .25s ease;
+  }
+  nav.main-nav a:hover::after{ transform: scaleX(1); }
+
+  .header-actions{ display:flex; align-items:center; gap: 14px; }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:9px;
+    padding: 13px 28px; font-size: 14px; font-weight:600; letter-spacing:0.4px;
+    border-radius: var(--radius); border: 1px solid transparent; transition: all .25s ease;
+    white-space: nowrap;
+  }
+  .btn-gold{ background: var(--gold); color: var(--navy-deep); }
+  .btn-gold:hover{ background: var(--gold-soft); transform: translateY(-2px); }
+  .btn-outline{ background: transparent; color:#fff; border-color: rgba(255,255,255,0.4); }
+  .btn-outline:hover{ border-color: var(--gold); color: var(--gold-soft); }
+  .btn-dark{ background: var(--navy); color:#fff; }
+  .btn-dark:hover{ background: var(--navy-deep); transform: translateY(-2px); }
+  .btn-call{
+    display:inline-flex; align-items:center; gap:8px; color:#fff; font-size:14px; font-weight:600;
+  }
+  .btn-call svg{ width:16px; height:16px; }
+
+  .nav-toggle{ display:none; background:none; border:none; padding:6px; }
+  .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after{
+    display:block; width:24px; height:2px; background:#fff; position:relative; transition: all .25s ease;
+  }
+  .nav-toggle span::before,.nav-toggle span::after{ content:""; position:absolute; left:0; }
+  .nav-toggle span::before{ top:-7px; }
+  .nav-toggle span::after{ top:7px; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; min-height: 100vh; display:flex; align-items:center;
+    background: linear-gradient(180deg, rgba(16,26,37,0.55) 0%, rgba(16,26,37,0.72) 55%, rgba(16,26,37,0.94) 100%),
+      url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    color:#fff; overflow:hidden;
+  }
+  .hero::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background: radial-gradient(ellipse at 50% 120%, rgba(201,168,76,0.18), transparent 60%);
+  }
+  .hero-inner{ position:relative; z-index:2; padding-top: 110px; padding-bottom: 70px; text-align:center; }
+  .hero-arch{
+    width: 120px; height: auto; margin: 0 auto 30px; opacity:0.92;
+  }
+  .hero h1{
+    font-size: clamp(42px, 7vw, 78px); color:#fff; line-height:1.05; letter-spacing:0.5px;
+  }
+  .hero .tagline{
+    margin-top: 22px; font-family:'Playfair Display',serif; font-style: italic; font-weight:500;
+    font-size: clamp(18px, 2.4vw, 24px); color: var(--gold-soft);
+  }
+  .hero-meta{
+    margin-top: 26px; display:flex; align-items:center; justify-content:center; gap: 18px;
+    font-size: 14px; color: #E8E2D3; flex-wrap: wrap;
+  }
+  .stars{ display:inline-flex; gap:3px; }
+  .stars svg{ width:15px; height:15px; fill: var(--gold); }
+  .hero-cta{ margin-top: 44px; display:flex; gap:18px; justify-content:center; flex-wrap:wrap; }
+  .scroll-cue{
+    position:absolute; bottom: 34px; left:50%; transform: translateX(-50%); z-index:2;
+    display:flex; flex-direction:column; align-items:center; gap:8px; color: rgba(255,255,255,0.75); font-size:11px;
+    letter-spacing:2px; text-transform:uppercase;
+  }
+  .scroll-cue .line{ width:1px; height:34px; background: rgba(255,255,255,0.5); overflow:hidden; position:relative; }
+  .scroll-cue .line::after{
+    content:""; position:absolute; top:-40%; left:0; width:100%; height:40%; background: var(--gold);
+    animation: scrollDrip 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollDrip{ 0%{ top:-40%; } 100%{ top:100%; } }
+
+  /* ---------- About ---------- */
+  .about{ background: var(--paper); }
+  .about-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items:center; }
+  .about-media{ position:relative; }
+  .about-media .arch-frame{ box-shadow: var(--shadow); }
+  .about-badge{
+    position:absolute; bottom:-28px; left:-28px; background: var(--navy); color:#fff;
+    padding: 22px 26px; box-shadow: var(--shadow); text-align:center; min-width: 150px;
+  }
+  .about-badge strong{ font-family:'Playfair Display',serif; font-size: 30px; color: var(--gold); display:block; }
+  .about-badge span{ font-size: 11.5px; letter-spacing:1.5px; text-transform:uppercase; color:#D9D2C2; }
+  .about-copy p{ color: var(--ink-soft); font-size: 16.5px; margin-bottom: 18px; }
+  .about-points{ margin-top: 30px; display:grid; gap: 16px; }
+  .about-points li{ display:flex; gap:14px; align-items:flex-start; font-size:15.5px; color: var(--ink); }
+  .about-points svg{ width:19px; height:19px; flex-shrink:0; margin-top:3px; fill: var(--gold); }
+
+  /* ---------- Rooms ---------- */
+  .rooms{ background: var(--cream); position:relative; }
+  .room-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 34px; }
+  .room-card{
+    background: var(--paper); box-shadow: 0 10px 30px rgba(26,42,58,0.08);
+    display:flex; flex-direction:column; transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .room-card:hover{ transform: translateY(-8px); box-shadow: var(--shadow); }
+  .room-media{ position:relative; height: 230px; overflow:hidden; }
+  .room-media img{ width:100%; height:100%; object-fit:cover; transition: transform .5s ease; }
+  .room-card:hover .room-media img{ transform: scale(1.06); }
+  .room-price-tag{
+    position:absolute; top:16px; right:16px; background: var(--navy); color: var(--gold-soft);
+    font-family:'Playfair Display',serif; font-size:14px; padding: 8px 14px;
+  }
+  .room-body{ padding: 28px 26px 30px; display:flex; flex-direction:column; flex:1; }
+  .room-body h3{ font-size: 22px; }
+  .room-body .room-desc{ margin-top: 10px; color: var(--ink-soft); font-size: 14.8px; flex:1; }
+  .room-facts{ display:flex; gap:16px; margin-top: 16px; flex-wrap:wrap; }
+  .room-facts span{
+    font-size:12px; letter-spacing:0.5px; color: var(--brown); border:1px solid rgba(92,58,33,0.25);
+    padding: 5px 10px; text-transform:uppercase;
+  }
+  .room-body .btn{ margin-top: 22px; width:100%; }
+
+  /* ---------- Services ---------- */
+  .services{ background: var(--navy); color:#fff; position:relative; overflow:hidden; }
+  .services::before{
+    content:""; position:absolute; inset:0; opacity:0.06; pointer-events:none;
+    background-image: radial-gradient(circle at 20% 30%, #C9A84C 0, transparent 3px),
+                       radial-gradient(circle at 80% 70%, #C9A84C 0, transparent 3px);
+    background-size: 90px 90px;
+  }
+  .services .section-head h2{ color:#fff; }
+  .services .section-head p{ color:#B9C0C9; }
+  .service-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(255,255,255,0.08); position:relative; z-index:1; }
+  .service-card{
+    background: var(--navy); padding: 40px 32px; display:flex; flex-direction:column; gap:16px;
+    transition: background .25s ease;
+  }
+  .service-card:hover{ background: var(--navy-deep); }
+  .service-card svg{ width: 34px; height:34px; stroke: var(--gold); }
+  .service-card h4{ color:#fff; font-size: 18px; }
+  .service-card p{ color:#AEB6C0; font-size: 14px; }
+
+  /* ---------- Contact ---------- */
+  .contact{ background: var(--paper); }
+  .contact-grid{ display:grid; grid-template-columns: 0.85fr 1.15fr; gap: 60px; }
+  .contact-info{ background: var(--navy); color:#fff; padding: 46px 40px; position:relative; }
+  .contact-info h3{ color:#fff; font-size: 24px; }
+  .contact-info p.lead{ color:#C7CDD5; margin-top:12px; font-size:15px; }
+  .contact-list{ margin-top: 32px; display:grid; gap: 22px; }
+  .contact-list li{ display:flex; gap:16px; align-items:flex-start; }
+  .contact-list svg{ width:20px; height:20px; fill: var(--gold); flex-shrink:0; margin-top:2px; }
+  .contact-list strong{ display:block; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color: var(--gold-soft); margin-bottom:4px; }
+  .contact-list span, .contact-list a{ font-size:15px; color:#EDE9DD; }
+  .contact-socials{ margin-top: 36px; display:flex; gap: 12px; }
+  .contact-socials a{
+    width: 38px; height:38px; border:1px solid rgba(255,255,255,0.25); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; transition: all .25s ease;
+  }
+  .contact-socials a:hover{ background: var(--gold); border-color: var(--gold); }
+  .contact-socials svg{ width:16px; height:16px; fill:#fff; }
+
+  .contact-form{ background: var(--cream); padding: 46px 40px; }
+  .form-row{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .field{ margin-bottom: 20px; display:flex; flex-direction:column; gap:8px; }
+  .field label{ font-size:12.5px; letter-spacing:1px; text-transform:uppercase; color: var(--brown); font-weight:600; }
+  .field input, .field textarea{
+    border:1px solid var(--line); background:#fff; padding: 13px 15px; font-family:'Inter',sans-serif;
+    font-size:14.5px; color: var(--ink); border-radius: var(--radius); resize: vertical;
+  }
+  .field input:focus, .field textarea:focus{ border-color: var(--gold); }
+  .form-note{ font-size: 12.5px; color: var(--ink-soft); margin-top: 6px; }
+  .form-success{
+    display:none; align-items:center; gap:10px; background:#EFF7EE; color:#2E6B2E; padding:14px 16px; font-size:14px; margin-bottom:18px; border-radius: var(--radius);
+  }
+  .form-success.show{ display:flex; }
+
+  /* ---------- Footer ---------- */
+  footer{ background: var(--navy-deep); color: #C7CDD5; padding: 64px 0 26px; }
+  .footer-grid{ display:grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 44px; }
+  .footer-brand .brand{ color:#fff; margin-bottom: 16px; }
+  .footer-brand p{ font-size: 14px; color:#9BA4AF; max-width: 280px; }
+  .footer-col h5{ font-family:'Inter',sans-serif; font-size:12.5px; letter-spacing:2px; text-transform:uppercase; color: var(--gold-soft); margin-bottom:18px; font-weight:600; }
+  .footer-col ul{ display:grid; gap: 12px; }
+  .footer-col a{ font-size:14px; color:#B7BFC8; transition: color .2s ease; }
+  .footer-col a:hover{ color: var(--gold); }
+  .footer-socials{ display:flex; gap:12px; margin-top:4px; }
+  .footer-socials a{
+    width:34px; height:34px; border:1px solid rgba(255,255,255,0.18); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .footer-socials svg{ width:14px; height:14px; fill:#C7CDD5; }
+  .footer-socials a:hover{ border-color: var(--gold); }
+  .footer-socials a:hover svg{ fill: var(--gold); }
+  .footer-bottom{
+    margin-top: 54px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,0.08);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:13px; color:#7C8794;
+  }
+
+  /* ---------- Floating WhatsApp ---------- */
+  .whatsapp-float{
+    position: fixed; bottom: 26px; right: 26px; z-index: 600;
+    width: 58px; height: 58px; border-radius: 50%; background: #25D366;
+    display:flex; align-items:center; justify-content:center; box-shadow: 0 10px 26px rgba(0,0,0,0.28);
+    transition: transform .25s ease;
+  }
+  .whatsapp-float:hover{ transform: scale(1.08); }
+  .whatsapp-float svg{ width: 30px; height:30px; fill:#fff; }
+  .whatsapp-float .ping{
+    position:absolute; inset:0; border-radius:50%; background:#25D366; opacity:0.6;
+    animation: ping 2.2s ease-out infinite;
+  }
+  @keyframes ping{ 0%{ transform: scale(1); opacity:0.55;} 100%{ transform: scale(1.7); opacity:0; } }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{ opacity:0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px){
+    .about-grid, .contact-grid{ grid-template-columns: 1fr; }
+    .room-grid{ grid-template-columns: 1fr 1fr; }
+    .service-grid{ grid-template-columns: 1fr 1fr; }
+    .footer-grid{ grid-template-columns: 1fr 1fr; }
+    .about-badge{ position:static; margin-top: -50px; margin-left: 20px; display:inline-block; }
+  }
+  @media (max-width: 760px){
+    .section{ padding: 78px 0; }
+    nav.main-nav, .header-actions .btn-outline, .header-actions .btn-call{ display:none; }
+    .nav-toggle{ display:block; }
+    .room-grid{ grid-template-columns: 1fr; }
+    .service-grid{ grid-template-columns: 1fr; }
+    .footer-grid{ grid-template-columns: 1fr 1fr; }
+    .form-row{ grid-template-columns: 1fr; }
+    .contact-info, .contact-form{ padding: 34px 26px; }
+    .hero-meta{ flex-direction:column; gap:10px; }
+    nav.main-nav.mobile-open{
+      display:flex; position:fixed; inset:0; background: var(--navy-deep); flex-direction:column;
+      align-items:center; justify-content:center; gap: 30px; z-index: 400;
+    }
+    nav.main-nav.mobile-open a{ font-size: 20px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header id="siteHeader">
+  <div class="container nav-row">
+    <a href="#home" class="brand">
+      <svg class="brand-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 4C13 4 6 13 6 23v21h10V26c0-4.4 3.6-8 8-8s8 3.6 8 8v18h10V23C42 13 35 4 24 4z" stroke="#C9A84C" stroke-width="2"/>
+        <circle cx="24" cy="16" r="3" fill="#C9A84C"/>
+      </svg>
+      <span class="brand-text">
+        <strong>DaySpring Hotel</strong>
+        <span>Wuse &middot; Abuja</span>
+      </span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#rooms">Rooms</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="tel:+2348032509625" class="btn-call">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.7 3.9 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        Call Now
+      </a>
+      <a href="#contact" class="btn btn-outline">Book Now</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="home">
+  <div class="container hero-inner">
+    <svg class="hero-arch" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 88V45C10 22 27 5 60 5s50 17 50 40v43" stroke="#C9A84C" stroke-width="2"/>
+      <path d="M24 88V48C24 30 38 18 60 18s36 12 36 30v40" stroke="#C9A84C" stroke-width="1" opacity="0.55"/>
+    </svg>
+    <div style="margin-bottom:10px;"></div>
+    <h1>DaySpring Hotel</h1>
+    <p class="tagline">Your Home Away From Home in Abuja</p>
+
+    <div class="hero-meta">
+      <span class="stars" aria-hidden="true">
+        <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 8.5l6.4-.6z"/></svg>
+        <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 8.5l6.4-.6z"/></svg>
+        <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 8.5l6.4-.6z"/></svg>
+        <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L10 15l-5.6 3.1 1.4-6.3L1 8.5l6.4-.6z"/></svg>
+      </span>
+      <span>3.6 out of 5 &nbsp;&middot;&nbsp; 860+ Google reviews</span>
+      <span>&middot;</span>
+      <span>Zone 6, Plot 4 Juba St, Wuse, Abuja</span>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-gold">Book Now</a>
+      <a href="#rooms" class="btn btn-outline">View Rooms</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="section about" id="about">
+  <div class="container about-grid">
+    <div class="about-media reveal">
+      <div class="arch-frame">
+        <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=900&q=80" alt="DaySpring Hotel lobby seating area">
+      </div>
+      <div class="about-badge">
+        <strong>860+</strong>
+        <span>Google Reviews</span>
+      </div>
+    </div>
+
+    <div class="about-copy reveal">
+      <div class="eyebrow">About Us</div>
+      <h2>A quiet, comfortable base in the heart of Wuse</h2>
+      <p>Tucked into Zone 6 on Juba Street, DaySpring Hotel has become a familiar stop for travellers who want Abuja's convenience without the noise. It's the kind of place where the front desk remembers your name by the second night.</p>
+      <p>We built our reputation on straightforward hospitality &mdash; clean, well-kept rooms, attentive staff, and a location that puts the city's business districts, government offices, and restaurants within easy reach.</p>
+
+      <ul class="about-points">
+        <li>
+          <svg viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm4.3 5.7l-5 5.6a1 1 0 01-1.5.05L5.6 11a1 1 0 111.4-1.4l1.4 1.4 4.3-4.8a1 1 0 111.5 1.5z"/></svg>
+          <span>Minutes from Wuse Market, the Central Business District, and major government offices</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm4.3 5.7l-5 5.6a1 1 0 01-1.5.05L5.6 11a1 1 0 111.4-1.4l1.4 1.4 4.3-4.8a1 1 0 111.5 1.5z"/></svg>
+          <span>Staff on hand around the clock for late arrivals, early flights, and everything in between</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm4.3 5.7l-5 5.6a1 1 0 01-1.5.05L5.6 11a1 1 0 111.4-1.4l1.4 1.4 4.3-4.8a1 1 0 111.5 1.5z"/></svg>
+          <span>Rooms built for rest, from short business stopovers to longer family visits</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ROOMS ================= -->
+<section class="section rooms" id="rooms">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow">Accommodation</div>
+      <h2>Rooms built for how you're travelling</h2>
+      <p>Three room types, each priced simply, with no surprises at checkout.</p>
+    </div>
+
+    <div class="room-grid">
+
+      <div class="room-card reveal">
+        <div class="room-media">
+          <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=800&q=80" alt="Standard Room at DaySpring Hotel">
+          <span class="room-price-tag">&#8358;15,000/night</span>
+        </div>
+        <div class="room-body">
+          <h3>Standard Room</h3>
+          <p class="room-desc">A well-appointed room for solo travellers and short stays &mdash; comfortable bedding, a private bathroom, and everything you need close at hand.</p>
+          <div class="room-facts"><span>1 Bed</span><span>Free Wi-Fi</span><span>AC</span></div>
+          <a href="#contact" class="btn btn-dark" onclick="prefillRoom('Standard Room (₦15,000/night)')">Book Now</a>
+        </div>
+      </div>
+
+      <div class="room-card reveal">
+        <div class="room-media">
+          <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80" alt="Deluxe Room at DaySpring Hotel">
+          <span class="room-price-tag">&#8358;25,000/night</span>
+        </div>
+        <div class="room-body">
+          <h3>Deluxe Room</h3>
+          <p class="room-desc">More space to spread out, with a seating area and upgraded finishes. A favourite with business travellers staying a few nights.</p>
+          <div class="room-facts"><span>1 King Bed</span><span>Work Desk</span><span>AC</span></div>
+          <a href="#contact" class="btn btn-dark" onclick="prefillRoom('Deluxe Room (₦25,000/night)')">Book Now</a>
+        </div>
+      </div>
+
+      <div class="room-card reveal">
+        <div class="room-media">
+          <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80" alt="Executive Suite at DaySpring Hotel">
+          <span class="room-price-tag">&#8358;45,000/night</span>
+        </div>
+        <div class="room-body">
+          <h3>Executive Suite</h3>
+          <p class="room-desc">Our largest accommodation, with a separate living space and premium furnishings &mdash; suited to extended stays and visiting dignitaries.</p>
+          <div class="room-facts"><span>Living Area</span><span>Mini Bar</span><span>Premium AC</span></div>
+          <a href="#contact" class="btn btn-dark" onclick="prefillRoom('Executive Suite (₦45,000/night)')">Book Now</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="section services" id="services">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow">What's Included</div>
+      <h2>Everything a comfortable stay needs</h2>
+      <p>The essentials are covered, so you can focus on why you're in Abuja.</p>
+    </div>
+  </div>
+
+  <div class="service-grid">
+    <div class="service-card reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+      <h4>24-Hour Front Desk</h4>
+      <p>Someone is always on duty for check-ins, questions, and anything you need at odd hours.</p>
+    </div>
+    <div class="service-card reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M2 8.5a15 15 0 0120 0"/><path d="M5.5 12a10 10 0 0113 0"/><path d="M9 15.5a5 5 0 016 0"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/></svg>
+      <h4>Free Wi-Fi</h4>
+      <p>Reliable internet throughout the hotel, included with every room.</p>
+    </div>
+    <div class="service-card reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="7" width="18" height="12" rx="1"/><path d="M7 7V5a2 2 0 012-2h6a2 2 0 012 2v2"/><path d="M3 13h18"/></svg>
+      <h4>Air Conditioning</h4>
+      <p>Every room is fitted with air conditioning, kept in good working order.</p>
+    </div>
+    <div class="service-card reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 10h16M6 10V4h2v6M10 10V4h2v6M14 10V4h2v6M4 10v10M20 10v10"/></svg>
+      <h4>Restaurant</h4>
+      <p>On-site dining serving local and continental dishes through the day.</p>
+    </div>
+    <div class="service-card reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 4h16v6a4 4 0 01-4 4h-2v6H8v-6H6a4 4 0 01-4-4V4z"/><path d="M12 14v-3"/></svg>
+      <h4>Laundry Service</h4>
+      <p>Same-day laundry available for guests, arranged through the front desk.</p>
+    </div>
+    <div class="service-card reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="9" width="18" height="9" rx="2"/><path d="M7 9V7a5 5 0 0110 0v2"/><circle cx="8" cy="14" r="1" fill="currentColor" stroke="none"/><circle cx="16" cy="14" r="1" fill="currentColor" stroke="none"/></svg>
+      <h4>Secure Parking</h4>
+      <p>On-site parking for guests arriving by car, watched over around the clock.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="section contact" id="contact">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow">Get In Touch</div>
+      <h2>Book your stay at DaySpring</h2>
+      <p>Call us directly, message on WhatsApp, or send the form below and we'll respond promptly.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Contact Details</h3>
+        <p class="lead">Reach us any time — the front desk is staffed around the clock.</p>
+
+        <ul class="contact-list">
+          <li>
+            <svg viewBox="0 0 20 20"><path d="M4 3h3l1.5 4-2 1.5a11 11 0 005 5l1.5-2 4 1.5v3a1 1 0 01-1 1C9.6 17 3 10.4 3 2a1 1 0 011-1z" transform="translate(0,1)"/></svg>
+            <div><strong>Phone</strong><a href="tel:+2348032509625">0803 250 9625</a></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6c0 4.5 6 10 6 10s6-5.5 6-10a6 6 0 00-6-6zm0 8.2a2.2 2.2 0 110-4.4 2.2 2.2 0 010 4.4z"/></svg>
+            <div><strong>Address</strong><span>Zone 6, Plot 4 Juba St, Wuse, Abuja 904101</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm4.3 5.7l-5 5.6a1 1 0 01-1.5.05L5.6 11a1 1 0 111.4-1.4l1.4 1.4 4.3-4.8a1 1 0 111.5 1.5z"/></svg>
+            <div><strong>Rating</strong><span>3.6 / 5 &middot; 860+ Google reviews</span></div>
+          </li>
+        </ul>
+
+        <div class="contact-socials">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3 0 4.1.06 1.1.05 1.8.22 2.5.47a5 5 0 011.8 1.17 5 5 0 011.17 1.8c.25.7.42 1.4.47 2.5C22 9.1 22 9.4 22 12s0 2.9-.06 4.1c-.05 1.1-.22 1.8-.47 2.5a5 5 0 01-1.17 1.8 5 5 0 01-1.8 1.17c-.7.25-1.4.42-2.5.47C15 22 14.7 22 12 22s-2.9 0-4.1-.06c-1.1-.05-1.8-.22-2.5-.47a5 5 0 01-1.8-1.17 5 5 0 01-1.17-1.8c-.25-.7-.42-1.4-.47-2.5C2 14.9 2 14.6 2 12s0-2.9.06-4.1c.05-1.1.22-1.8.47-2.5A5 5 0 013.7 3.6 5 5 0 015.5 2.43c.7-.25 1.4-.42 2.5-.47C8.9 2 9.4 2 12 2zm0 5a5 5 0 100 10 5 5 0 000-10zm0 8.2a3.2 3.2 0 110-6.4 3.2 3.2 0 010 6.4zM17.4 6.6a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.25-1.5 1.55-1.5H16.7V3.7c-.3-.04-1.3-.13-2.5-.13-2.5 0-4.2 1.5-4.2 4.3V10H7.3v3.1H10V21h3.5z"/></svg></a>
+          <a href="#" aria-label="Twitter / X"><svg viewBox="0 0 24 24"><path d="M4 3h4.2l4 5.5L16.8 3H20l-6.3 8 6.9 10h-4.2l-4.4-6-5.2 6H3l6.8-8.6L4 3z"/></svg></a>
+        </div>
+      </div>
+
+      <form class="contact-form reveal" id="bookingForm">
+        <div class="form-success" id="formSuccess">Thank you — your message has been received. We'll be in touch shortly.</div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="fname">Full Name</label>
+            <input type="text" id="fname" name="name" placeholder="e.g. Ada Okafor" required>
+          </div>
+          <div class="field">
+            <label for="fphone">Phone Number</label>
+            <input type="tel" id="fphone" name="phone" placeholder="e.g. 0803 000 0000" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="femail">Email Address</label>
+          <input type="email" id="femail" name="email" placeholder="you@example.com" required>
+        </div>
+
+        <div class="field">
+          <label for="fmessage">Message</label>
+          <textarea id="fmessage" name="message" rows="5" placeholder="Tell us your dates and which room you're interested in..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-gold" style="width:100%;">Send Message</button>
+        <p class="form-note">Prefer to talk now? Call 0803 250 9625 or message us on WhatsApp.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="brand">
+          <svg class="brand-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 4C13 4 6 13 6 23v21h10V26c0-4.4 3.6-8 8-8s8 3.6 8 8v18h10V23C42 13 35 4 24 4z" stroke="#C9A84C" stroke-width="2"/>
+            <circle cx="24" cy="16" r="3" fill="#C9A84C"/>
+          </svg>
+          <span class="brand-text"><strong style="color:#fff;">DaySpring Hotel</strong></span>
+        </a>
+        <p>Comfortable, well-located accommodation in Wuse, Abuja. Warm hospitality, every time you stay.</p>
+        <div class="footer-socials" style="margin-top:22px;">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3 0 4.1.06 1.1.05 1.8.22 2.5.47a5 5 0 011.8 1.17 5 5 0 011.17 1.8c.25.7.42 1.4.47 2.5C22 9.1 22 9.4 22 12s0 2.9-.06 4.1c-.05 1.1-.22 1.8-.47 2.5a5 5 0 01-1.17 1.8 5 5 0 01-1.8 1.17c-.7.25-1.4.42-2.5.47C15 22 14.7 22 12 22s-2.9 0-4.1-.06c-1.1-.05-1.8-.22-2.5-.47a5 5 0 01-1.8-1.17 5 5 0 01-1.17-1.8c-.25-.7-.42-1.4-.47-2.5C2 14.9 2 14.6 2 12s0-2.9.06-4.1c.05-1.1.22-1.8.47-2.5A5 5 0 013.7 3.6 5 5 0 015.5 2.43c.7-.25 1.4-.42 2.5-.47C8.9 2 9.4 2 12 2zm0 5a5 5 0 100 10 5 5 0 000-10zm0 8.2a3.2 3.2 0 110-6.4 3.2 3.2 0 010 6.4zM17.4 6.6a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.25-1.5 1.55-1.5H16.7V3.7c-.3-.04-1.3-.13-2.5-.13-2.5 0-4.2 1.5-4.2 4.3V10H7.3v3.1H10V21h3.5z"/></svg></a>
+          <a href="#" aria-label="Twitter / X"><svg viewBox="0 0 24 24"><path d="M4 3h4.2l4 5.5L16.8 3H20l-6.3 8 6.9 10h-4.2l-4.4-6-5.2 6H3l6.8-8.6L4 3z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#rooms">Rooms</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Rooms</h5>
+        <ul>
+          <li><a href="#rooms">Standard Room</a></li>
+          <li><a href="#rooms">Deluxe Room</a></li>
+          <li><a href="#rooms">Executive Suite</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:+2348032509625">0803 250 9625</a></li>
+          <li><a href="#contact">Zone 6, Plot 4 Juba St, Wuse, Abuja</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> DaySpring Hotel, Abuja. All rights reserved.</span>
+      <span>Wuse, Abuja &middot; Nigeria</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= FLOATING WHATSAPP ================= -->
+<a class="whatsapp-float" href="https://wa.me/2348032509625" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <span class="ping"></span>
+  <svg viewBox="0 0 32 32"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.5.72 4.83 1.98 6.8L4 29l7.36-1.93a12.9 12.9 0 004.66.86h.01c6.62 0 12.02-5.4 12.02-12.02C28.05 8.4 22.65 3 16.02 3zm0 21.9h-.01a10 10 0 01-5.1-1.4l-.37-.22-3.78 1 1-3.68-.24-.38a9.86 9.86 0 01-1.52-5.2C6 10.06 10.55 5.5 16.02 5.5c2.65 0 5.14 1.03 7.02 2.9a9.86 9.86 0 012.9 7.02c0 5.47-4.55 9.98-9.92 9.98zm5.44-7.44c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.8.37-.27.3-1.05 1.02-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.16 4.56.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg>
+</a>
+
+<script>
+  // Header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+  navToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('mobile-open');
+  });
+  mainNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => mainNav.classList.remove('mobile-open'));
+  });
+
+  // Reveal-on-scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Prefill message field when a room's Book Now is clicked
+  function prefillRoom(roomName){
+    const msg = document.getElementById('fmessage');
+    msg.value = "I'd like to book the " + roomName + ". Please let me know availability for my dates.";
+  }
+
+  // Contact form — client-side only demo submission
+  const form = document.getElementById('bookingForm');
+  const success = document.getElementById('formSuccess');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    success.classList.add('show');
+    form.reset();
+    success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

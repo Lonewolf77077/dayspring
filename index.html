@@ -240,7 +240,6 @@
   .contact-socials a:hover{ background: var(--gold); border-color: var(--gold); }
   .contact-socials svg{ width:16px; height:16px; fill:#fff; }
 
-  /* Map Container */
   .map-container {
     margin-top: 28px;
     border-radius: 8px;
@@ -578,7 +577,6 @@
           </li>
         </ul>
 
-        <!-- ===== GOOGLE MAP ===== -->
         <div class="map-container">
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.0911!2d7.4552693!3d9.0709326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0adfa1cfe839%3A0x3783884214b97198!2sDaySpring%20Hotel!5e0!3m2!1sen!2sng!4v1699999999999" 
@@ -605,7 +603,7 @@
       </div>
 
       <form class="booking-form reveal" id="bookingForm">
-        <div class="form-success" id="formSuccess">✅ Booking request received! We'll confirm your stay within 2 hours.</div>
+        <div class="form-success" id="formSuccess">✅ Booking request sent via WhatsApp!</div>
 
         <div class="form-row">
           <div class="field">
@@ -763,8 +761,6 @@
   // ===== Prefill room when clicking "Book Now" on room cards =====
   function prefillRoom(roomName) {
     const select = document.getElementById('roomSelect');
-    
-    // Try to match the room in the dropdown
     const options = select.options;
     for (let i = 0; i < options.length; i++) {
       if (options[i].text.includes(roomName.split('(')[0].trim())) {
@@ -772,11 +768,7 @@
         break;
       }
     }
-    
-    // Scroll to booking form
     document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    
-    // Focus on first field
     setTimeout(() => {
       document.getElementById('fname').focus();
     }, 800);
@@ -789,8 +781,6 @@
     const checkout = document.getElementById('checkout');
     if (checkin) checkin.min = today;
     if (checkout) checkout.min = today;
-    
-    // When check-in changes, update check-out minimum
     if (checkin) {
       checkin.addEventListener('change', function() {
         if (checkout) checkout.min = this.value;
@@ -798,36 +788,66 @@
     }
   });
 
-  // ===== Booking form submission =====
+  // ===== BOOKING FORM: Send via WhatsApp =====
   const form = document.getElementById('bookingForm');
   const success = document.getElementById('formSuccess');
   
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', function(e) {
     e.preventDefault();
     
-    // Get values
+    // Get form values
     const name = document.getElementById('fname').value.trim();
     const phone = document.getElementById('fphone').value.trim();
     const email = document.getElementById('femail').value.trim();
     const checkin = document.getElementById('checkin').value;
     const checkout = document.getElementById('checkout').value;
     const room = document.getElementById('roomSelect').value;
+    const guests = document.getElementById('guests').value;
+    const rooms_needed = document.getElementById('rooms_needed').value;
+    const message = document.getElementById('fmessage').value.trim();
     
-    // Validate
+    // Validate required fields
     if (!name || !phone || !email || !checkin || !checkout || !room) {
       alert('Please fill in all required fields.');
       return;
     }
     
-    // Show success
+    // Build WhatsApp message
+    const whatsappMessage = `🏨 *New Booking Request - DaySpring Hotel* 🏨
+    
+📌 *Guest Details:*
+👤 Name: ${name}
+📞 Phone: ${phone}
+📧 Email: ${email}
+
+📅 *Stay Details:*
+📆 Check-in: ${checkin}
+📆 Check-out: ${checkout}
+🛏️ Room: ${room}
+👥 Guests: ${guests}
+🛌 Rooms: ${rooms_needed}
+
+📝 *Special Requests:*
+${message || 'None'}
+
+📍 Location: Zone 6, Plot 4 Juba St, Wuse, Abuja
+📞 Contact: 0803 250 9625
+
+_This booking was sent via the DaySpring Hotel website._`;
+    
+    // Open WhatsApp with pre-filled message
+    const whatsappUrl = `https://wa.me/2348032509625?text=${encodeURIComponent(whatsappMessage)}`;
+    window.open(whatsappUrl, '_blank');
+    
+    // Show success message
     success.classList.add('show');
     form.reset();
     success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     
-    // Hide success after 8 seconds
+    // Hide success after 10 seconds
     setTimeout(() => {
       success.classList.remove('show');
-    }, 8000);
+    }, 10000);
   });
 
   // ===== Footer year =====

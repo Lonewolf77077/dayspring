@@ -470,7 +470,7 @@
           <h3>Standard Room</h3>
           <p class="room-desc">A well-appointed room for solo travellers and short stays — comfortable bedding, a private bathroom, and everything you need close at hand.</p>
           <div class="room-facts"><span>1 Bed</span><span>Free Wi-Fi</span><span>AC</span></div>
-          <a href="#contact" class="btn btn-dark" onclick="prefillRoom('Standard Room (₦15,000/night)')">Book Now</a>
+          <a href="#contact" class="btn btn-dark" onclick="prefillRoom('Standard Room')">Book Now</a>
         </div>
       </div>
 
@@ -483,7 +483,7 @@
           <h3>Deluxe Room</h3>
           <p class="room-desc">More space to spread out, with a seating area and upgraded finishes. A favourite with business travellers staying a few nights.</p>
           <div class="room-facts"><span>1 King Bed</span><span>Work Desk</span><span>AC</span></div>
-          <a href="#contact" class="btn btn-dark" onclick="prefillRoom('Deluxe Room (₦25,000/night)')">Book Now</a>
+          <a href="#contact" class="btn btn-dark" onclick="prefillRoom('Deluxe Room')">Book Now</a>
         </div>
       </div>
 
@@ -496,7 +496,7 @@
           <h3>Executive Suite</h3>
           <p class="room-desc">Our largest accommodation, with a separate living space and premium furnishings — suited to extended stays and visiting dignitaries.</p>
           <div class="room-facts"><span>Living Area</span><span>Mini Bar</span><span>Premium AC</span></div>
-          <a href="#contact" class="btn btn-dark" onclick="prefillRoom('Executive Suite (₦45,000/night)')">Book Now</a>
+          <a href="#contact" class="btn btn-dark" onclick="prefillRoom('Executive Suite')">Book Now</a>
         </div>
       </div>
 
@@ -602,8 +602,10 @@
         </div>
       </div>
 
+      <!-- ===== BOOKING FORM (NO action, NO method) ===== -->
       <form class="booking-form reveal" id="bookingForm">
-        <div class="form-success" id="formSuccess">✅ Booking request sent via WhatsApp!</div>
+
+        <div class="form-success" id="formSuccess">✅ Booking request sent! WhatsApp is opening...</div>
 
         <div class="form-row">
           <div class="field">
@@ -729,56 +731,67 @@
   <svg viewBox="0 0 32 32"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.5.72 4.83 1.98 6.8L4 29l7.36-1.93a12.9 12.9 0 004.66.86h.01c6.62 0 12.02-5.4 12.02-12.02C28.05 8.4 22.65 3 16.02 3zm0 21.9h-.01a10 10 0 01-5.1-1.4l-.37-.22-3.78 1 1-3.68-.24-.38a9.86 9.86 0 01-1.52-5.2C6 10.06 10.55 5.5 16.02 5.5c2.65 0 5.14 1.03 7.02 2.9a9.86 9.86 0 012.9 7.02c0 5.47-4.55 9.98-9.92 9.98zm5.44-7.44c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.8.37-.27.3-1.05 1.02-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.16 4.56.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg>
 </a>
 
+<!-- ================= JAVASCRIPT (ALL IN ONE PLACE) ================= -->
 <script>
   // ===== Header scroll state =====
   const header = document.getElementById('siteHeader');
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 40);
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 40) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
   });
 
   // ===== Mobile nav toggle =====
   const navToggle = document.getElementById('navToggle');
   const mainNav = document.getElementById('mainNav');
-  navToggle.addEventListener('click', () => {
+  navToggle.addEventListener('click', function() {
     mainNav.classList.toggle('mobile-open');
   });
-  mainNav.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => mainNav.classList.remove('mobile-open'));
+  mainNav.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      mainNav.classList.remove('mobile-open');
+    });
   });
 
   // ===== Reveal-on-scroll =====
   const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+  const io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('in');
         io.unobserve(entry.target);
       }
     });
   }, { threshold: 0.15 });
-  revealEls.forEach(el => io.observe(el));
+  revealEls.forEach(function(el) {
+    io.observe(el);
+  });
 
   // ===== Prefill room when clicking "Book Now" on room cards =====
   function prefillRoom(roomName) {
     const select = document.getElementById('roomSelect');
+    if (!select) return;
     const options = select.options;
-    for (let i = 0; i < options.length; i++) {
-      if (options[i].text.includes(roomName.split('(')[0].trim())) {
+    for (var i = 0; i < options.length; i++) {
+      if (options[i].text.indexOf(roomName) !== -1) {
         select.value = options[i].value;
         break;
       }
     }
     document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    setTimeout(() => {
-      document.getElementById('fname').focus();
+    setTimeout(function() {
+      const nameField = document.getElementById('fname');
+      if (nameField) nameField.focus();
     }, 800);
   }
 
   // ===== Set minimum date for check-in (today) =====
   document.addEventListener('DOMContentLoaded', function() {
     const today = new Date().toISOString().split('T')[0];
-    const checkin = document.getElementById('checkin');
-    const checkout = document.getElementById('checkout');
+    var checkin = document.getElementById('checkin');
+    var checkout = document.getElementById('checkout');
     if (checkin) checkin.min = today;
     if (checkout) checkout.min = today;
     if (checkin) {
@@ -788,70 +801,78 @@
     }
   });
 
-  // ===== BOOKING FORM: Send via WhatsApp =====
-  const form = document.getElementById('bookingForm');
-  const success = document.getElementById('formSuccess');
-  
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form values
-    const name = document.getElementById('fname').value.trim();
-    const phone = document.getElementById('fphone').value.trim();
-    const email = document.getElementById('femail').value.trim();
-    const checkin = document.getElementById('checkin').value;
-    const checkout = document.getElementById('checkout').value;
-    const room = document.getElementById('roomSelect').value;
-    const guests = document.getElementById('guests').value;
-    const rooms_needed = document.getElementById('rooms_needed').value;
-    const message = document.getElementById('fmessage').value.trim();
-    
-    // Validate required fields
-    if (!name || !phone || !email || !checkin || !checkout || !room) {
-      alert('Please fill in all required fields.');
-      return;
-    }
-    
-    // Build WhatsApp message
-    const whatsappMessage = `🏨 *New Booking Request - DaySpring Hotel* 🏨
-    
-📌 *Guest Details:*
-👤 Name: ${name}
-📞 Phone: ${phone}
-📧 Email: ${email}
+  // ===== BOOKING FORM: Send via WhatsApp (COMPLETE FIX) =====
+  var form = document.getElementById('bookingForm');
+  var success = document.getElementById('formSuccess');
 
-📅 *Stay Details:*
-📆 Check-in: ${checkin}
-📆 Check-out: ${checkout}
-🛏️ Room: ${room}
-👥 Guests: ${guests}
-🛌 Rooms: ${rooms_needed}
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();  // STOP the form from submitting the old way
 
-📝 *Special Requests:*
-${message || 'None'}
+      // --- 1. Get all form values ---
+      var name = document.getElementById('fname').value.trim();
+      var phone = document.getElementById('fphone').value.trim();
+      var email = document.getElementById('femail').value.trim();
+      var checkin = document.getElementById('checkin').value;
+      var checkout = document.getElementById('checkout').value;
+      var room = document.getElementById('roomSelect').value;
+      var guests = document.getElementById('guests').value;
+      var rooms_needed = document.getElementById('rooms_needed').value;
+      var message = document.getElementById('fmessage').value.trim();
 
-📍 Location: Zone 6, Plot 4 Juba St, Wuse, Abuja
-📞 Contact: 0803 250 9625
+      // --- 2. Validate required fields ---
+      if (!name || !phone || !email || !checkin || !checkout || !room) {
+        alert('Please fill in all required fields.');
+        return;
+      }
 
-_This booking was sent via the DaySpring Hotel website._`;
-    
-    // Open WhatsApp with pre-filled message
-    const whatsappUrl = `https://wa.me/2348032509625?text=${encodeURIComponent(whatsappMessage)}`;
-    window.open(whatsappUrl, '_blank');
-    
-    // Show success message
-    success.classList.add('show');
-    form.reset();
-    success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    
-    // Hide success after 10 seconds
-    setTimeout(() => {
-      success.classList.remove('show');
-    }, 10000);
-  });
+      // --- 3. Build the WhatsApp message ---
+      var whatsappMessage = '🏨 *New Booking Request - DaySpring Hotel* 🏨%0A%0A';
+      whatsappMessage += '📌 *Guest Details:*%0A';
+      whatsappMessage += '👤 Name: ' + name + '%0A';
+      whatsappMessage += '📞 Phone: ' + phone + '%0A';
+      whatsappMessage += '📧 Email: ' + email + '%0A%0A';
+      whatsappMessage += '📅 *Stay Details:*%0A';
+      whatsappMessage += '📆 Check-in: ' + checkin + '%0A';
+      whatsappMessage += '📆 Check-out: ' + checkout + '%0A';
+      whatsappMessage += '🛏️ Room: ' + room + '%0A';
+      whatsappMessage += '👥 Guests: ' + guests + '%0A';
+      whatsappMessage += '🛌 Rooms: ' + rooms_needed + '%0A%0A';
+      whatsappMessage += '📝 *Special Requests:*%0A';
+      whatsappMessage += (message || 'None') + '%0A%0A';
+      whatsappMessage += '📍 Location: Zone 6, Plot 4 Juba St, Wuse, Abuja%0A';
+      whatsappMessage += '📞 Contact: 0803 250 9625%0A%0A';
+      whatsappMessage += '_This booking was sent via the DaySpring Hotel website._';
+
+      // --- 4. Open WhatsApp with the pre-filled message ---
+      var whatsappUrl = 'https://wa.me/2348032509625?text=' + whatsappMessage;
+      window.open(whatsappUrl, '_blank');
+
+      // --- 5. Show success message ---
+      if (success) {
+        success.classList.add('show');
+      }
+      form.reset();
+
+      // --- 6. Scroll to success message ---
+      if (success) {
+        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      // --- 7. Hide success after 10 seconds ---
+      setTimeout(function() {
+        if (success) {
+          success.classList.remove('show');
+        }
+      }, 10000);
+    });
+  }
 
   // ===== Footer year =====
-  document.getElementById('year').textContent = new Date().getFullYear();
+  var yearElement = document.getElementById('year');
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
 </script>
 
 </body>
